@@ -46,7 +46,7 @@ export default function Index() {
                     <br />
                     Thank you for visiting! My portfolio is currently under construction as I work on showcasing my projects and skills. I'm excited to share my work with you soon.<br />
                     <br />
-                    In the meantime, feel free to reach out to me at <Link className='z-20 relative underline hover:text-secondary hover:dark:text-secondary-dark transition-all ease-in-out delay-50' to="/">My linkedin</Link> for any inquiries or to learn more about my background and expertise. Stay tuned for updates and new additions to my portfolio.<br />
+                    In the meantime, feel free to reach out to me at <Link className='z-20 relative underline hover:text-secondary hover:dark:text-secondary-dark transition-all ease-in-out delay-50' to="https://www.linkedin.com/in/mohamedaddar/">My linkedin</Link> for any inquiries or to learn more about my background and expertise. Stay tuned for updates and new additions to my portfolio.<br />
                     <br />
                     Thank you for your patience!<br />
                     <br />
