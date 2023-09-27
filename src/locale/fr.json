@@ -1,0 +1,18 @@
+{
+    "hello": "BONJOUR",
+    "my_name_is": "Je m'appelle",
+    "i_am_full": "Je suis développeur Full-Stack et designer UI/UX",
+
+    "about": "À PROPOS",
+    "bio": "<p>Bonjour, je suis Mohamed Addar. Je suis une personne créative, spécialisée dans <b>la conception graphique</b>, <b>la conception UX/UI</b> et <b>le développement web front-end</b>. Mon cœur bat au rythme de la musique pop, alimentant mon inspiration pour créer des merveilles artistiques. Je suis un éternel apprenant, toujours désireux de plonger plus profondément dans les technologies émergentes et l'art de la programmation créative.</p>",
+    "experiences": "Expériences",
+
+    "projects": "Projets",
+    "all": "Tous",
+
+    "social_media": "RÉSEAUX SOCIAUX",
+
+    "header_about": "À propos",
+    "work": "Projets",
+    "header_contact": "Contact"
+}
