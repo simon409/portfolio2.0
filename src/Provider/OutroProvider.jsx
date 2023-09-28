@@ -10,7 +10,9 @@ export const useOutroContext = () => {
 export const OutroProvider = ({ children }) => {
   const [globalVariable, setGlobalVariable] = useState(false);
   const [Data, setData] = useState([]);
-  const [ExpData, setExpData] = useState([])
+  const [ExpData, setExpData] = useState([]);
+  const [openMobileNav, setOpenMobileNav] = useState(false);
+  const [openlilmenu, setOpenlilmenu] = useState(false);
 
   useEffect(() => {
     Papa.parse(
@@ -24,7 +26,7 @@ export const OutroProvider = ({ children }) => {
       }
     );
     console.log(Data)
-  }, []); // Run this effect only once on component mount
+  }, [globalVariable]); // Run this effect only once on component mount
 
   useEffect(() => {
     Papa.parse(
@@ -40,7 +42,7 @@ export const OutroProvider = ({ children }) => {
   }, [globalVariable]); // Run this effect only once on component mount
 
   return (
-    <OutroContext.Provider value={{ globalVariable, setGlobalVariable, Data, ExpData }}>
+    <OutroContext.Provider value={{ globalVariable, setGlobalVariable, Data, ExpData, openMobileNav, setOpenMobileNav, openlilmenu, setOpenlilmenu }}>
       {children}
     </OutroContext.Provider>
   );

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function Work() {
   const [isLoaded, setisLoaded] = useState(false);
-  const { globalVariable, Data } = useOutroContext();
+  const { globalVariable, Data, setOpenMobileNav,setOpenlilmenu } = useOutroContext();
   const [Type, setType] = useState(0);
   const [filteredProjects, setfilteredProjects] = useState(null)
   const [t] = useTranslation();
@@ -47,9 +47,13 @@ export default function Work() {
     }
   }, [Type])
   
+  const HandelNavClose = () => {
+    setOpenlilmenu(false);
+    setOpenMobileNav(false);
+  }
 
   return (
-    <div className='px-[5%] 2xl:px-[10%] bg-bg-light dark:bg-bg-dark h-fit min-h-screen pb-10 w-screen'>
+    <div onClick={HandelNavClose} className='px-[5%] 2xl:px-[10%] bg-bg-light dark:bg-bg-dark h-fit min-h-screen pb-10 w-screen'>
       <div className={`pt-[80px] bg-secondary text-white w-fit pr-5 h-[150px] lg:h-[200px] origin-left ${isLoaded ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'} transition-all duration-200 ease-in-out`}>
         <div className={`bg-primary h-full w-fit pr-5 origin-left ${isLoaded ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'}  transition-all duration-200 ease-in-out delay-100`}>
           <div className={`bg-bg-dark dark:bg-bg-light h-full w-fit pr-5 flex origin-left ${isLoaded ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'}  transition-all duration-200 ease-in-out delay-200`}>

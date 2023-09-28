@@ -42,7 +42,7 @@ const Cursor = () => {
 
 export default function Hero() {
   const [isLoaded, setisLoaded] = useState(false);
-  const { globalVariable } = useOutroContext();
+  const { globalVariable, setOpenMobileNav,setOpenlilmenu } = useOutroContext();
   const [t] = useTranslation();
   useEffect(() => {
     // Store the interval ID in state
@@ -60,9 +60,13 @@ export default function Hero() {
         clearTimeout(delayTask); // Clear the timeout if the component unmounts
       };
     }
-  }, [])
+  }, []);
+  const HandelNavClose = () => {
+    setOpenlilmenu(false);
+    setOpenMobileNav(false);
+  }
   return (
-    <div className="bg-black cursor-default">
+    <div onClick={HandelNavClose} className="bg-black cursor-default">
       <div className="shapes">
         <div className="shape shape-1"></div>
         <div className="shape shape-2"></div>

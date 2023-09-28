@@ -9,16 +9,11 @@ import { useTranslation } from 'react-i18next';
 
 export default function Header() {
   const [t, i18n] = useTranslation();
-  var date = new Date();
-  var newDate = new Date(date.setMonth(date.getMonth() + 2));
-  const [openMobileNav, setOpenMobileNav] = useState(false);
-  const [openlilmenu, setOpenlilmenu] = useState(false);
-  const [isDark, setisDark] = useState(false);
   const [isLoaded, setisLoaded] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   const history = useHistory();
   const location = useLocation();
-  const { setGlobalVariable } = useOutroContext();
+  const { setGlobalVariable, openMobileNav, setOpenMobileNav, openlilmenu, setOpenlilmenu } = useOutroContext();
   const [theme, setTheme] = useState('light');
   const [lang, setLang] = useState(localStorage.getItem('lang') || 'en');
   const [buttonStyle, setButtonStyle] = useState({});
@@ -39,8 +34,7 @@ export default function Header() {
       setLang(localStorage.getItem('lang'))
     }
     i18n.changeLanguage(localStorage.getItem('lang'));
-  }, [])
-
+  }, []);
 
   useEffect(() => {
     const html = document.querySelector('html');
@@ -135,7 +129,7 @@ export default function Header() {
     }
   };
 
-  const handelLanguageSwitch = (lang) => {
+  const handelLanguageSwitch = () => {
     setisLoaded(false);
     setGlobalVariable(true);
     setTimeout(() => {
@@ -151,6 +145,7 @@ export default function Header() {
         localStorage.setItem('lang', 'en');
       }
       i18n.changeLanguage(localStorage.getItem('lang'));
+      setOpenMobileNav(false);
     }, 500);
     
   }
@@ -190,31 +185,10 @@ export default function Header() {
           </button>
         </div>
       </div>
-      <div className={`w-fit relative bg-bg-light dark:bg-bg-dark ml-auto rounded-md border-2 border-bg-dark dark:border-bg-light p-2 hidden lg:flex flex-col gap-2 origin-top ${openlilmenu ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'} transition-all duration-200 ease-in-out`}>
-        <div className="flex gap-2">
-          <button disabled={theme == 'dark'} style={theme == 'dark' ? buttonSelectedStyleForTheme : buttonNotSelectedStyleForTheme} onClick={handleThemeSwitch} className={`font-bold py-2 px-4 border-2 rounded-md border-black hover:bg-black ${theme == 'dark' ? 'bg-white text-black' : ''} hover:text-white dark:border-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out`}>
-            <BiMoon />
-          </button>
-          <button disabled={theme == 'light'} style={theme == 'light' ? buttonSelectedStyleForTheme : buttonNotSelectedStyleForTheme} onClick={handleThemeSwitch} className={`font-bold py-2 px-4 border-2 rounded-md border-black hover:bg-black ${theme == 'light' ? 'bg-black text-white' : ''} hover:text-white dark:border-white dark:text-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out`}>
-            <BiSun />
-          </button>
-        </div>
-        <div className="flex gap-2">
-          <button disabled={lang == "en"} style={lang == 'en' ? buttonSelectedStyleForLang : buttonNotSelectedStyleForLang} onClick={() => handelLanguageSwitch('en')} className={`font-bold py-2 px-4 border-2 rounded-md border-black hover:bg-black ${lang == 'en' ? 'text-white bg-black dark:text-bg-dark dark:bg-white' : 'text-black bg-white dark:text-white dark:bg-black'} hover:text-white dark:border-white dark:text-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out`}>
-            En
-          </button>
-          <button disabled={lang == "fn"} style={lang == 'fr' ? buttonSelectedStyleForLang : buttonNotSelectedStyleForLang} onClick={() => handelLanguageSwitch('fr')} className={`font-bold py-2 px-4 border-2 rounded-md border-black hover:bg-black ${lang == 'fr' ? 'text-white bg-black dark:text-bg-dark dark:bg-white' : 'text-black bg-white dark:text-white dark:bg-black'} hover:text-white dark:border-white  dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out`}>
-            Fr
-          </button>
-        </div>
-        <div className="flex">
-          <button onClick={HandelcloseLilMenu} className='font-bold w-full py-2 px-4 border-2 rounded-md border-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out'>Close</button>
-        </div>
-
-      </div>
+      
       <div
         className={`${openMobileNav ? 'scale-y-100 translate-y-0 opacity-100 delay-75 rounded-bl-md rounded-br-md' : 'scale-y-0 -translate-y-1/2 opacity-0'
-          } bg-white dark:bg-bg-dark block lg:hidden shadow-lg z-50 transition-all duration-300 ease-in-out`}
+          } bg-white dark:bg-bg-dark block lg:hidden border-2 border-black rounded-md mb-1 z-50 transition-all duration-300 ease-in-out`}
       >
         <ul className='p-4 text-black dark:text-white'>
           <li className='font-bold px-4 py-2 hover-bg-slate-100 transition-colors duration-100 rounded-md ease-in-out'>
@@ -227,11 +201,33 @@ export default function Header() {
             <button onClick={() => HandelTransition('/contact')}>{t('header_contact')}</button>
           </li>
           <li className='font-bold py-2 px-4 rounded-md transition-all duration-100 ease-in-out'>
-            <button style={buttonStyle} onClick={handleThemeSwitch} className='font-bold py-2 px-4 border-2 rounded-md border-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-bg-light dark:hover:text-black transition-colors duration-100 ease-in-out'>
-              {theme === 'dark' ? <BiSun /> : <BiMoon />}
-            </button>
+          <button style={buttonStyle} onClick={HandelopenLilMenu} className='font-bold py-2 px-4 border-2 rounded-md border-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out'>
+            <p className='rotate-90'><PiDotsThreeOutlineVerticalBold /></p>
+          </button>
           </li>
         </ul>
+      </div>
+      <div className={`lg:w-fit w-full relative bg-bg-light dark:bg-bg-dark ml-auto rounded-md border-2 border-bg-dark dark:border-bg-light p-2 flex justify-between lg:flex-col gap-2 origin-top ${openlilmenu ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'} transition-all duration-200 ease-in-out`}>
+        <div className="flex gap-2">
+          <button disabled={theme == 'dark'} style={theme == 'dark' ? buttonSelectedStyleForTheme : buttonNotSelectedStyleForTheme} onClick={handleThemeSwitch} className={`font-bold py-2 px-4 border-2 rounded-md border-black hover:bg-black ${theme == 'dark' ? 'bg-white text-black' : ''} hover:text-white dark:border-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out`}>
+            <BiMoon />
+          </button>
+          <button disabled={theme == 'light'} style={theme == 'light' ? buttonSelectedStyleForTheme : buttonNotSelectedStyleForTheme} onClick={handleThemeSwitch} className={`font-bold py-2 px-4 border-2 rounded-md border-black hover:bg-black ${theme == 'light' ? 'bg-black text-white' : ''} hover:text-white dark:border-white dark:text-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out`}>
+            <BiSun />
+          </button>
+        </div>
+        <div className="flex gap-2">
+          <button disabled={lang == "en"} style={lang == 'en' ? buttonSelectedStyleForLang : buttonNotSelectedStyleForLang} onClick={() => handelLanguageSwitch()} className={`font-bold py-2 px-4 border-2 rounded-md border-black hover:bg-black ${lang == 'en' ? 'text-white bg-black dark:text-bg-dark dark:bg-white' : 'text-black bg-white dark:text-white dark:bg-black'} hover:text-white dark:border-white dark:text-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out`}>
+            En
+          </button>
+          <button disabled={lang == "fn"} style={lang == 'fr' ? buttonSelectedStyleForLang : buttonNotSelectedStyleForLang} onClick={() => handelLanguageSwitch()} className={`font-bold py-2 px-4 border-2 rounded-md border-black hover:bg-black ${lang == 'fr' ? 'text-white bg-black dark:text-bg-dark dark:bg-white' : 'text-black bg-white dark:text-white dark:bg-black'} hover:text-white dark:border-white  dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out`}>
+            Fr
+          </button>
+        </div>
+        <div className="flex">
+          <button onClick={HandelcloseLilMenu} className='font-bold w-full py-2 px-4 border-2 rounded-md border-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out'>Close</button>
+        </div>
+
       </div>
     </div>
   );

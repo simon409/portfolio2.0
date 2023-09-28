@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function About() {
   const [isLoaded, setisLoaded] = useState(false);
-  const { globalVariable, setGlobalVariable, ExpData } = useOutroContext();
+  const { globalVariable, setGlobalVariable, ExpData, setOpenMobileNav,setOpenlilmenu } = useOutroContext();
   const [Type, setType] = useState(0);
   const [filteredProjects, setfilteredProjects] = useState(null)
   const [t] = useTranslation()
@@ -36,11 +36,21 @@ export default function About() {
 
 
   const SavePdf = () => {
-    FileSaver.saveAs(resen, "resume - Mohamed Addar.pdf");
+    if(localStorage.getItem("lang") == "en"){
+      FileSaver.saveAs(resen, "resume English version - Mohamed Addar.pdf");
+    }
+    else{
+      FileSaver.saveAs(resfr, "cv version française- Mohamed Addar.pdf");
+    }
+  }
+
+  const HandelNavClose = () => {
+    setOpenlilmenu(false);
+    setOpenMobileNav(false);
   }
 
   return (
-    <div id='about' className='h-screen w-screen lg:pt-[100px] pt-[80px] pb-5 bg-bg-light dark:bg-bg-dark 2xl:px-[10%] lg:px[5%] px-[5%] flex flex-col lg:flex-row gap-10 lg:gap-16 '>
+    <div onClick={HandelNavClose} id='about' className='h-screen w-screen lg:pt-[100px] pt-[80px] pb-5 bg-bg-light dark:bg-bg-dark 2xl:px-[10%] lg:px[5%] px-[5%] flex flex-col lg:flex-row gap-10 lg:gap-16 '>
       <div className="mx-auto lg:hidden flex flex-col relative w-full h-[85px]">
         <div className={`bg-bg-dark dark:bg-bg-light mx-auto w-[200px] h-[50px] flex flex-col relative items-center justify-end ${isLoaded ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'} origin-top transition-all ease-in-out duration-500`}>
         </div>
