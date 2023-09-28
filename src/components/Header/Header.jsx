@@ -62,6 +62,13 @@ export default function Header() {
   }, [location.pathname])
 
   useEffect(() => {
+    if(openlilmenu == false){
+      setButtonStyle({ transform: 'scaleY(1)' })
+    }
+  }, [openlilmenu])
+  
+
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
       const isVisible = prevScrollPos > currentScrollPos;
