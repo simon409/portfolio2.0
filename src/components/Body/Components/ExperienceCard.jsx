@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FiArrowUpRight } from 'react-icons/fi'
 
-
 export default function ProjectCard({ title, smdesc, techs, isLoaded, dated, datef }) {
     const techsArray = techs.split(',');
     const [Hovered, setHovered] = useState(false)
@@ -10,7 +9,7 @@ export default function ProjectCard({ title, smdesc, techs, isLoaded, dated, dat
             <div onMouseOver={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
                 <div className='flex flex-col'>
                     <div id="title" className='py-3 flex flex-col lg:flex-row justify-between'>
-                        <h1 className={`lg:text-3xl text-start text-xl text-bg-dark dark:text-bg-light font-bold origin-bottom ${isLoaded ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'} transition-all duration-150 ease-in-out delay-700`}>{title}</h1>
+                        <h1 className={`lg:text-3xl text-start md:text-xl text-lg text-bg-dark dark:text-bg-light font-bold origin-bottom ${isLoaded ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'} transition-all duration-150 ease-in-out delay-700`}>{title}</h1>
                         <div className='my-auto'>
                             <p className={`dark:text-white text-black font-bold text-xs lg:text-sm`}>{dated} {" -> "} {datef}</p>
                         </div>
