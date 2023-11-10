@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import LOGO from "../../assets/logo_ma_nobg.png";
 import LOGOWHITE from "../../assets/logo_ma_nobg_white.png";
 import { BiMenuAltRight, BiMoon, BiSun } from "react-icons/bi";
 import { PiDotsThreeOutlineVerticalBold } from "react-icons/pi";
-import { useHistory, useLocation } from "react-router-dom/cjs/react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useOutroContext } from "../../Provider/OutroProvider";
 import { useTranslation } from "react-i18next";
+import { database } from "../config/firebase";
+import { onValue, ref } from "firebase/database";
+import { data } from "autoprefixer";
 
 export default function Header() {
   const [t, i18n] = useTranslation();
   const [isLoaded, setisLoaded] = useState(false);
-  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
-  const history = useHistory();
+  const history = useNavigate();
   const location = useLocation();
   const {
     setGlobalVariable,
@@ -32,6 +34,14 @@ export default function Header() {
   );
   const [buttonNotSelectedStyleForLang, setButtonNotSelectedStyleForLang] =
     useState({});
+  const [isBlogAvailalble, setIsBlogAvailalble] = useState(false);
+  useEffect(() => {
+    const unsubscribe = onValue(ref(database, "blogs"), (snapshot) => {
+      const dataObject = snapshot.val();
+      setIsBlogAvailalble(dataObject);
+    });
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     if (localStorage.getItem("theme") === null) {
@@ -77,28 +87,12 @@ export default function Header() {
     }
   }, [openlilmenu]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
-      const isVisible = prevScrollPos > currentScrollPos;
-
-      setPrevScrollPos(currentScrollPos);
-
-      setisVisible(isVisible);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [prevScrollPos]);
-
   const toggleMobileNav = () => {
     setOpenMobileNav(!openMobileNav);
   };
   const HandelTransition = (to) => {
     if (location.pathname === to) {
+      /* empty */
     } else {
       setGlobalVariable(true);
       setTimeout(() => {
@@ -108,7 +102,7 @@ export default function Header() {
       setTimeout(() => {
         // Your code to execute after the delay
         setGlobalVariable(false);
-        history.push(to);
+        history(to);
       }, 1000);
     }
     setOpenMobileNav(false);
@@ -178,8 +172,7 @@ export default function Header() {
             <img
               className="w-10"
               src={theme == "dark" ? LOGOWHITE : LOGO}
-              alt=""
-              srcset=""
+              alt="Mohamed Addar's LOGO"
             />
           </button>
         </div>
@@ -211,6 +204,11 @@ export default function Header() {
                 {t("header_contact")}
               </button>
             </li>
+            {isBlogAvailalble && (
+              <li className="font-bold px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-100 rounded-md ease-in-out">
+                <button onClick={() => HandelTransition("/blog")}>Blog</button>
+              </li>
+            )}
           </ul>
         </div>
         <div className="my-auto hidden lg:flex gap-5">
@@ -250,6 +248,14 @@ export default function Header() {
           >
             {t("header_contact")}
           </button>
+          {isBlogAvailalble && (
+            <button
+              onClick={() => HandelTransition("/contact")}
+              className="font-bold px-4 py-2 hover-bg-slate-100 transition-colors duration-100 rounded-md ease-in-out text-start"
+            >
+              Blog
+            </button>
+          )}
           <div className="font-bold py-2 px-4 rounded-md transition-all duration-100 ease-in-out">
             <button
               style={buttonStyle}
@@ -311,7 +317,7 @@ export default function Header() {
               lang == "en"
                 ? "text-white bg-black dark:text-bg-dark dark:bg-white"
                 : "text-black bg-white dark:text-white dark:bg-black"
-            } hover:text-white dark:border-white dark:text-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out`}
+            } hover:text-white dark:border-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out`}
           >
             En
           </button>

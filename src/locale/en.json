@@ -1,18 +1,19 @@
 {
-    "hello" : "HELLO",
-    "my_name_is" : "My name is",
-    "i_am_full" : "I am Full-Stack Developer & UI/UX Designer",
+  "hello": "HELLO",
+  "my_name_is": "My name is",
+  "i_am_full": "I am Full-Stack Developer & UI/UX Designer",
 
-    "about" : "ABOUT",
-    "bio":"<p>Hello, I'm Mohamed Addar. I'm a creative soul, specializing in <b>graphic design</b>, <b>UX/UI design</b>, and <b>front-end web development</b>. My heart beats to the rhythm of pop music, fueling my inspiration to craft artistic wonders. I'm an eternal learner, always eager to delve deeper into emerging technologies and the art of creative coding.</p>",
-    "experiences" : "Experiences",
+  "about": "ABOUT",
+  "bio": "<p>Hello, I'm Mohamed Addar. I'm a creative soul, specializing in <b>graphic design</b>, <b>UX/UI design</b>, and <b>web development</b>. My heart beats to the rhythm of pop music, fueling my inspiration to craft artistic wonders. I'm an eternal learner, always eager to delve deeper into emerging technologies and the art of creative coding.</p>",
+  "experiences": "Experiences",
+  "blog": "Blog",
 
-    "projects" : "Projects",
-    "all" : "All",
+  "projects": "Projects",
+  "all": "All",
 
-    "social_media" : "SOCIAL MEDIA",
+  "social_media": "SOCIAL MEDIA",
 
-    "header_about" : "About",
-    "work" : "Work",
-    "header_contact" : "Contact"
+  "header_about": "About",
+  "work": "Work",
+  "header_contact": "Contact"
 }
