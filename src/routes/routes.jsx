@@ -7,8 +7,8 @@ import About from "../components/Body/About";
 import Work from "../components/Body/Work";
 import Dashboard from "../components/admin/dashboard";
 import PrivateRoutes from "./components/PrivateRoutes";
-import Landing from "../components/Blog/Landing";
 import Blog from "../components/blog/Blog";
+import Blogs from "../components/blog/Blogs";
 
 const Layout = () => (
   <>
@@ -39,7 +39,7 @@ export const routers = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: <Landing />,
+        element: <Blogs />,
       },
       {
         path: "/blog/:id",

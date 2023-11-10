@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { database } from "../config/firebase";
 import { onValue, ref } from "firebase/database";
 
-export default function Landing() {
+export default function Blogs() {
   const [data, setData] = useState([]);
   useEffect(() => {
     const unsubscribe = onValue(ref(database, "blogs"), (snapshot) => {
