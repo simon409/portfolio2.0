@@ -4,24 +4,19 @@ import { useOutroContext } from "../../Provider/OutroProvider";
 import { useTranslation } from "react-i18next";
 
 const Cursor = () => {
-  const [mouseX, setMouseX] = useState(0);
-  const [mouseY, setMouseY] = useState(0);
-
   useEffect(() => {
     const handleMouseMove = (evt) => {
       const newMouseX = evt.clientX;
       const newMouseY = evt.clientY;
-      setMouseX(newMouseX);
-      setMouseY(newMouseY);
 
       gsap.set(".cursor", {
-        x: mouseX,
-        y: mouseY,
+        x: newMouseX,
+        y: newMouseY,
       });
 
       gsap.to(".shape", {
-        x: mouseX,
-        y: mouseY,
+        x: newMouseX,
+        y: newMouseY,
         stagger: -0.1,
       });
     };
