@@ -99,6 +99,7 @@ export default function Header() {
       }, 1000);
     }
     setOpenMobileNav(false);
+    setOpenlilmenu(false);
   };
 
   const HandelopenLilMenu = () => {
@@ -172,7 +173,7 @@ export default function Header() {
             onClick={toggleMobileNav}
             className="font-bold p-2 rounded-md origin-bottom transition-all duration-300 ease-in-out"
           >
-            <p className="flex flex-col gap-1 items-end">
+            <div className="flex flex-col gap-1 items-end">
               <div
                 className={`w-[20px] h-[2px] bg-slate-900 dark:bg-slate-50 rounded-md origin-right ${
                   !openlilmenu
@@ -194,7 +195,7 @@ export default function Header() {
                     : "scale-x-0 opacity-0"
                 } transition-all duration-150 ease-in-out`}
               ></div>
-            </p>
+            </div>
           </button>
         </div>
         <div
@@ -229,7 +230,7 @@ export default function Header() {
             onClick={HandelopenLilMenu}
             className="font-bold p-2 rounded-md origin-bottom transition-all duration-300 ease-in-out"
           >
-            <p className="flex flex-col gap-1 items-end">
+            <div className="flex flex-col gap-1 items-end">
               <div
                 className={`w-[20px] h-[3px] bg-slate-900 dark:bg-slate-50 rounded-md origin-right ${
                   !openlilmenu
@@ -251,7 +252,7 @@ export default function Header() {
                     : "scale-x-0 opacity-0"
                 } transition-all duration-150 ease-in-out`}
               ></div>
-            </p>
+            </div>
           </button>
         </div>
       </div>

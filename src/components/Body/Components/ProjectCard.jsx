@@ -72,7 +72,7 @@ export default function ProjectCard({
                   onFocus={() => setHovered(true)}
                   onMouseOver={() => setHovered(true)}
                   onMouseLeave={() => setHovered(false)}
-                  className={`dark:text-black flex px-2 py-1 rounded-md dark:bg-white bg-slate-800 hover:bg-slate-700 text-white text-xl origin-top transition-all duration-200 ease-in-out`}
+                  className={`dark:text-black flex px-2 py-1 rounded-md dark:bg-white bg-slate-800 hover:bg-slate-700 text-white lg:text-xl text-sm origin-top transition-all duration-200 ease-in-out`}
                 >
                   <span className="my-auto">
                     <FiGithub />
@@ -84,7 +84,7 @@ export default function ProjectCard({
           </div>
           <div
             id="description_tags"
-            className={`border-t-4 border-black dark:border-white py-5 flex flex-col lg:flex-row gap-3 justify-between origin-left ${
+            className={`border-t-4 border-black dark:border-white py-5 flex flex-col md:flex-col lg:flex-row gap-3 justify-between origin-left ${
               isLoaded ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
             } transition-all duration-300 ease-in-out delay-500`}
           >
@@ -98,7 +98,7 @@ export default function ProjectCard({
               </p>
             </div>
             <div
-              className={`grid grid-cols-2 lg:flex gap-3 origin-bottom  ${
+              className={`grid grid-cols-2 md:grid-cols-4 lg:flex gap-3 origin-bottom  ${
                 isLoaded ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
               } transition-all duration-300 ease-in-out delay-700`}
             >

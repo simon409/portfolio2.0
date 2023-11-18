@@ -66,8 +66,6 @@ export default function Work() {
           : []
       );
       setisLoaded(true);
-      console.log(filteredProjects[0].status);
-      console.log(t("on_going"));
     }, 800);
 
     return () => {
@@ -124,7 +122,7 @@ export default function Work() {
       >
         <div className="w-full h-[80px] flex">
           <div className="m-auto">
-            <ul className="flex gap-2 text-[12px] lg:gap-5 lg:text-lg p-5">
+            <ul className="flex gap-0 text-[10px] lg:gap-5 lg:text-lg p-5">
               <li
                 className={`rounded-full ${
                   Type == 0 ? "border-b-2" : "border-b-0"
