@@ -8,7 +8,6 @@ import { useOutroContext } from "../../Provider/OutroProvider";
 import { useTranslation } from "react-i18next";
 import { database } from "../config/firebase";
 import { onValue, ref } from "firebase/database";
-import { data } from "autoprefixer";
 
 export default function Header() {
   const [t, i18n] = useTranslation();
@@ -24,7 +23,6 @@ export default function Header() {
   } = useOutroContext();
   const [theme, setTheme] = useState("light");
   const [lang, setLang] = useState(localStorage.getItem("lang") || "en");
-  const [buttonStyle, setButtonStyle] = useState({});
   const [buttonSelectedStyleForTheme, setButtonSelectedStyleForTheme] =
     useState({});
   const [buttonNotSelectedStyleForTheme, setButtonNotSelectedStyleForTheme] =
@@ -81,14 +79,9 @@ export default function Header() {
     };
   }, [location.pathname]);
 
-  useEffect(() => {
-    if (openlilmenu == false) {
-      setButtonStyle({ transform: "scaleY(1)" });
-    }
-  }, [openlilmenu]);
-
   const toggleMobileNav = () => {
     setOpenMobileNav(!openMobileNav);
+    setOpenlilmenu(!openlilmenu);
   };
   const HandelTransition = (to) => {
     if (location.pathname === to) {
@@ -110,12 +103,10 @@ export default function Header() {
 
   const HandelopenLilMenu = () => {
     setOpenlilmenu(!openlilmenu);
-    setButtonStyle({ transform: "scaleY(0)" });
   };
 
   const HandelcloseLilMenu = () => {
     setOpenlilmenu(!openlilmenu);
-    setButtonStyle({ transform: "scaleY(1)" });
   };
 
   const handleThemeSwitch = () => {
@@ -179,9 +170,31 @@ export default function Header() {
         <div className="my-auto block lg:hidden">
           <button
             onClick={toggleMobileNav}
-            className="text-2xl bg-white focus:bg-slate-50 dark:bg-bg-dark dark:focus:bg-slate-800 dark:text-white transition-all duration-100 p-2 rounded-md"
+            className="font-bold p-2 rounded-md origin-bottom transition-all duration-300 ease-in-out"
           >
-            <BiMenuAltRight />
+            <p className="flex flex-col gap-1 items-end">
+              <div
+                className={`w-[20px] h-[2px] bg-slate-900 dark:bg-slate-50 rounded-md origin-right ${
+                  !openlilmenu
+                    ? "scale-x-100 opacity-100"
+                    : "scale-x-0 opacity-0"
+                } transition-all duration-150 ease-in-out delay-300`}
+              ></div>
+              <div
+                className={`w-[15px] h-[2px] bg-slate-900 dark:bg-slate-50 rounded-md origin-right ${
+                  !openlilmenu
+                    ? "scale-x-100 opacity-100"
+                    : "scale-x-0 opacity-0"
+                } transition-all duration-150 ease-in-out delay-150`}
+              ></div>
+              <div
+                className={`w-[10px] h-[2px] bg-slate-900 dark:bg-slate-50 rounded-md origin-right ${
+                  !openlilmenu
+                    ? "scale-x-100 opacity-100"
+                    : "scale-x-0 opacity-0"
+                } transition-all duration-150 ease-in-out`}
+              ></div>
+            </p>
           </button>
         </div>
         <div
@@ -213,11 +226,32 @@ export default function Header() {
         </div>
         <div className="my-auto hidden lg:flex gap-5">
           <button
-            style={buttonStyle}
             onClick={HandelopenLilMenu}
-            className="font-bold py-2 px-4 border-2 rounded-md border-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out"
+            className="font-bold p-2 rounded-md origin-bottom transition-all duration-300 ease-in-out"
           >
-            <PiDotsThreeOutlineVerticalBold />
+            <p className="flex flex-col gap-1 items-end">
+              <div
+                className={`w-[20px] h-[3px] bg-slate-900 dark:bg-slate-50 rounded-md origin-right ${
+                  !openlilmenu
+                    ? "scale-x-100 opacity-100"
+                    : "scale-x-0 opacity-0"
+                } transition-all duration-150 ease-in-out delay-300`}
+              ></div>
+              <div
+                className={`w-[15px] h-[3px] bg-slate-900 dark:bg-slate-50 rounded-md origin-right ${
+                  !openlilmenu
+                    ? "scale-x-100 opacity-100"
+                    : "scale-x-0 opacity-0"
+                } transition-all duration-150 ease-in-out delay-150`}
+              ></div>
+              <div
+                className={`w-[10px] h-[3px] bg-slate-900 dark:bg-slate-50 rounded-md origin-right ${
+                  !openlilmenu
+                    ? "scale-x-100 opacity-100"
+                    : "scale-x-0 opacity-0"
+                } transition-all duration-150 ease-in-out`}
+              ></div>
+            </p>
           </button>
         </div>
       </div>
@@ -225,9 +259,9 @@ export default function Header() {
       <div
         className={`${
           openMobileNav
-            ? "scale-y-100 translate-y-0 opacity-100 delay-75 rounded-bl-md rounded-br-md"
+            ? "scale-y-100 translate-y-0 opacity-100 rounded-bl-md rounded-br-md"
             : "scale-y-0 -translate-y-1/2 opacity-0"
-        } bg-white dark:bg-bg-dark block lg:hidden border-2 border-black rounded-md mb-1 z-50 transition-all duration-300 ease-in-out`}
+        } bg-white dark:bg-bg-dark block lg:hidden border-2 border-black rounded-md mb-1 z-50 transition-all duration-200 ease-in-out`}
       >
         <div className="p-4 text-black dark:text-white flex flex-col">
           <button
@@ -256,17 +290,6 @@ export default function Header() {
               Blog
             </button>
           )}
-          <div className="font-bold py-2 px-4 rounded-md transition-all duration-100 ease-in-out">
-            <button
-              style={buttonStyle}
-              onClick={HandelopenLilMenu}
-              className="font-bold py-2 px-4 border-2 rounded-md border-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out"
-            >
-              <p className="rotate-90">
-                <PiDotsThreeOutlineVerticalBold />
-              </p>
-            </button>
-          </div>
         </div>
       </div>
       <div
@@ -336,14 +359,6 @@ export default function Header() {
             } hover:text-white dark:border-white  dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out`}
           >
             Fr
-          </button>
-        </div>
-        <div className="flex">
-          <button
-            onClick={HandelcloseLilMenu}
-            className="font-bold w-full py-2 px-4 border-2 rounded-md border-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-bg-light dark:hover:text-black origin-bottom transition-all duration-300 ease-in-out"
-          >
-            Close
           </button>
         </div>
       </div>
