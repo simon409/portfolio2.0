@@ -119,10 +119,8 @@ export default function About() {
           <button
             onClick={SavePdf}
             className={`flex gap-5 px-4 py-2 w-fit text-bg-dark dark:text-bg-light hover:bg-slate-100 dark:hover:bg-[#525252] rounded transition-all ease-in-out duration-200 lg:text-2xl text-xl origin-top ${
-              isLoaded
-                ? "scale-y-100 opacity-100 delay-50"
-                : "scale-y-0 opacity-0 delay-300"
-            } transition-all duration-300 ease-in-out`}
+              isLoaded ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
+            } transition-all duration-300 ease-in-out  delay-300`}
           >
             <p className="h-fit my-auto">
               <FiArrowUpRight />

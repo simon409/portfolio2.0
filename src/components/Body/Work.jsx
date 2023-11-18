@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import ProjectCard from './Components/ProjectCard'
 import { useOutroContext } from '../../Provider/OutroProvider';
 import { useTranslation } from 'react-i18next';
