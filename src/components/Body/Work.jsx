@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ProjectCard from "./Components/ProjectCard";
 import { useOutroContext } from "../../Provider/OutroProvider";
 import { useTranslation } from "react-i18next";
+import Collapse from "@mui/material/Collapse/Collapse";
 
 export default function Work() {
   const [isLoaded, setisLoaded] = useState(false);
@@ -9,6 +10,7 @@ export default function Work() {
     useOutroContext();
   const [Type, setType] = useState(0);
   const [filteredProjects, setfilteredProjects] = useState(null);
+  const [typeMenu, settypeMenu] = useState(false);
   const [t] = useTranslation();
 
   useEffect(() => {
@@ -120,9 +122,9 @@ export default function Work() {
           isLoaded ? "scale-y-100" : "scale-y-0"
         } transition-all duration-300 ease-in-out delay-200`}
       >
-        <div className="w-full h-[80px] flex">
+        <div className="w-full lg:h-[80px] h-fit lg:flex lg:px-0 px-[5%] relative">
           <div className="m-auto">
-            <ul className="flex gap-0 text-[10px] lg:gap-5 lg:text-lg p-5">
+            <ul className="lg:flex hidden gap-0 text-[15px] lg:gap-5 lg:text-lg p-5">
               <li
                 className={`rounded-full ${
                   Type == 0 ? "border-b-2" : "border-b-0"
@@ -160,6 +162,83 @@ export default function Work() {
               </li>
             </ul>
           </div>
+          <div className="flex w-full h-full pt-5 lg:hidden">
+            <button
+              onClick={() => settypeMenu(!typeMenu)}
+              className="font-bold my-auto p-2 rounded-md origin-bottom transition-all duration-300 ease-in-out"
+            >
+              <div className="flex flex-col gap-1 items-start lg:hidden">
+                <div
+                  className={`w-[20px] h-[3px] bg-slate-900 dark:bg-slate-50 rounded-md origin-center ${
+                    !typeMenu ? "" : "transform rotate-45 translate-y-[7px]"
+                  } transition-all duration-300 ease-in-out delay-300`}
+                ></div>
+                <div
+                  className={`w-[20px] h-[3px] bg-slate-900 dark:bg-slate-50 rounded-md origin-left ${
+                    !typeMenu
+                      ? "scale-x-100 opacity-100"
+                      : "scale-x-0 opacity-0"
+                  } transition-all duration-300 ease-in-out delay-0`}
+                ></div>
+                <div
+                  className={`w-[20px] h-[3px] bg-slate-900 dark:bg-slate-50 rounded-md origin-center ${
+                    !typeMenu ? "" : "transform -rotate-45 -translate-y-[7px]"
+                  } transition-all duration-300 ease-in-out delay-300`}
+                ></div>
+              </div>
+            </button>
+          </div>
+          <Collapse in={typeMenu} timeout={300}>
+            <div className="p-4 bg-slate-100 border-[1px] rounded-md lg:hidden">
+              <ul className="flex flex-col text-[15px] gap-2 lg:text-lg">
+                <li
+                  className={`rounded-md ${
+                    Type == 0
+                      ? "border-black bg-slate-50"
+                      : "border-transparent"
+                  } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
+                >
+                  <button onClick={() => setType(0)}>{t("all")}</button>
+                </li>
+                <li
+                  className={`rounded-md ${
+                    Type == 1
+                      ? "border-black bg-slate-50"
+                      : "border-transparent"
+                  } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
+                >
+                  <button onClick={() => setType(1)}>Web</button>
+                </li>
+                <li
+                  className={`rounded-md ${
+                    Type == 2
+                      ? "border-black bg-slate-50"
+                      : "border-transparent"
+                  } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
+                >
+                  <button onClick={() => setType(2)}>Mobile</button>
+                </li>
+                <li
+                  className={`rounded-md ${
+                    Type == 3
+                      ? "border-black bg-slate-50"
+                      : "border-transparent"
+                  } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
+                >
+                  <button onClick={() => setType(3)}>UI/UX</button>
+                </li>
+                <li
+                  className={`rounded-md ${
+                    Type == 4
+                      ? "border-black bg-slate-50"
+                      : "border-transparent"
+                  } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
+                >
+                  <button onClick={() => setType(4)}>{t("on_going")}</button>
+                </li>
+              </ul>
+            </div>
+          </Collapse>
         </div>
 
         {filteredProjects && filteredProjects.length > 0 ? (

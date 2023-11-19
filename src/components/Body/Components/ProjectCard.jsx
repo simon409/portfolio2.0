@@ -14,16 +14,16 @@ export default function ProjectCard({
   const [Hovered, setHovered] = useState(false);
   return (
     <li
-      className={`max-w-full ${
+      className={`${
         Hovered ? "dark:bg-[#525252] bg-gray-100" : ""
-      } md:max-w-1/2 lg:max-w-1/4 m-2 p-3 border-2 lg:border-0 origin-top rounded-lg ${
+      } md:max-w-1/2 lg:max-w-1/4 m-1 p-3 border-2 lg:border-0 origin-top rounded-lg ${
         isLoaded ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
       } transition-all duration-500 ease-in-out group lg:hover:!opacity-100 lg:group-hover/list:opacity-50`}
     >
       <button className="w-full h-full cursor-default">
         <div className="flex flex-col">
           <div className="flex lg:justify-between lg:flex-row flex-col lg:mb-0 mb-5">
-            <div id="title" className="py-3 flex gap-5">
+            <div id="title" className="py-2 flex gap-5">
               <h1
                 className={`${
                   title.length > 11 ? "lg:text-4xl text-xl" : "text-4xl"
@@ -33,7 +33,7 @@ export default function ProjectCard({
               >
                 {title}
               </h1>
-              <div className="w-[40px] h-[40px] flex">
+              <div className="w-[40px] h-[40px] lg:flex md:flex hidden">
                 <p
                   className={`dark:text-white text-black text-2xl origin-top ${
                     Hovered
