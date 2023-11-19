@@ -79,6 +79,10 @@ export default function Work() {
     setOpenlilmenu(false);
     setOpenMobileNav(false);
   };
+  const HandelTypeChange = (type) => {
+    settypeMenu(false);
+    setType(type);
+  };
 
   return (
     <div
@@ -130,35 +134,37 @@ export default function Work() {
                   Type == 0 ? "border-b-2" : "border-b-0"
                 } hover:border-b-2 border-black dark:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
               >
-                <button onClick={() => setType(0)}>{t("all")}</button>
+                <button onClick={() => HandelTypeChange(0)}>{t("all")}</button>
               </li>
               <li
                 className={`rounded-full ${
                   Type == 1 ? "border-b-2" : "border-b-0"
                 } hover:border-b-2 border-black dark:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
               >
-                <button onClick={() => setType(1)}>Web</button>
+                <button onClick={() => HandelTypeChange(1)}>Web</button>
               </li>
               <li
                 className={`rounded-full ${
                   Type == 2 ? "border-b-2" : "border-b-0"
                 } hover:border-b-2 border-black dark:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
               >
-                <button onClick={() => setType(2)}>Mobile</button>
+                <button onClick={() => HandelTypeChange(2)}>Mobile</button>
               </li>
               <li
                 className={`rounded-full ${
                   Type == 3 ? "border-b-2" : "border-b-0"
                 } hover:border-b-2 border-black dark:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
               >
-                <button onClick={() => setType(3)}>UI/UX</button>
+                <button onClick={() => HandelTypeChange(3)}>UI/UX</button>
               </li>
               <li
                 className={`rounded-full ${
                   Type == 4 ? "border-b-2" : "border-b-0"
                 } hover:border-b-2 border-black dark:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
               >
-                <button onClick={() => setType(4)}>{t("on_going")}</button>
+                <button onClick={() => HandelTypeChange(4)}>
+                  {t("on_going")}
+                </button>
               </li>
             </ul>
           </div>
@@ -198,7 +204,9 @@ export default function Work() {
                       : "border-transparent"
                   } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
                 >
-                  <button onClick={() => setType(0)}>{t("all")}</button>
+                  <button onClick={() => HandelTypeChange(0)}>
+                    {t("all")}
+                  </button>
                 </li>
                 <li
                   className={`rounded-md ${
@@ -207,7 +215,7 @@ export default function Work() {
                       : "border-transparent"
                   } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
                 >
-                  <button onClick={() => setType(1)}>Web</button>
+                  <button onClick={() => HandelTypeChange(1)}>Web</button>
                 </li>
                 <li
                   className={`rounded-md ${
@@ -216,7 +224,7 @@ export default function Work() {
                       : "border-transparent"
                   } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
                 >
-                  <button onClick={() => setType(2)}>Mobile</button>
+                  <button onClick={() => HandelTypeChange(2)}>Mobile</button>
                 </li>
                 <li
                   className={`rounded-md ${
@@ -225,7 +233,7 @@ export default function Work() {
                       : "border-transparent"
                   } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
                 >
-                  <button onClick={() => setType(3)}>UI/UX</button>
+                  <button onClick={() => HandelTypeChange(3)}>UI/UX</button>
                 </li>
                 <li
                   className={`rounded-md ${
@@ -234,7 +242,9 @@ export default function Work() {
                       : "border-transparent"
                   } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
                 >
-                  <button onClick={() => setType(4)}>{t("on_going")}</button>
+                  <button onClick={() => HandelTypeChange(4)}>
+                    {t("on_going")}
+                  </button>
                 </li>
               </ul>
             </div>
