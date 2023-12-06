@@ -204,7 +204,10 @@ export default function Work() {
                       : "border-transparent"
                   } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
                 >
-                  <button onClick={() => HandelTypeChange(0)}>
+                  <button
+                    className="w-full h-full text-start"
+                    onClick={() => HandelTypeChange(0)}
+                  >
                     {t("all")}
                   </button>
                 </li>
@@ -215,7 +218,12 @@ export default function Work() {
                       : "border-transparent"
                   } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
                 >
-                  <button onClick={() => HandelTypeChange(1)}>Web</button>
+                  <button
+                    className="w-full h-full text-start"
+                    onClick={() => HandelTypeChange(1)}
+                  >
+                    Web
+                  </button>
                 </li>
                 <li
                   className={`rounded-md ${
@@ -224,7 +232,12 @@ export default function Work() {
                       : "border-transparent"
                   } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
                 >
-                  <button onClick={() => HandelTypeChange(2)}>Mobile</button>
+                  <button
+                    className="w-full h-full text-start"
+                    onClick={() => HandelTypeChange(2)}
+                  >
+                    Mobile
+                  </button>
                 </li>
                 <li
                   className={`rounded-md ${
@@ -233,7 +246,12 @@ export default function Work() {
                       : "border-transparent"
                   } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
                 >
-                  <button onClick={() => HandelTypeChange(3)}>UI/UX</button>
+                  <button
+                    className="w-full h-full text-start"
+                    onClick={() => HandelTypeChange(3)}
+                  >
+                    UI/UX
+                  </button>
                 </li>
                 <li
                   className={`rounded-md ${
@@ -242,7 +260,10 @@ export default function Work() {
                       : "border-transparent"
                   } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
                 >
-                  <button onClick={() => HandelTypeChange(4)}>
+                  <button
+                    className="w-full h-full text-start"
+                    onClick={() => HandelTypeChange(4)}
+                  >
                     {t("on_going")}
                   </button>
                 </li>
