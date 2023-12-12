@@ -11,6 +11,7 @@ import { onValue, ref } from "firebase/database";
 
 export default function Header() {
   const [t, i18n] = useTranslation();
+  const frCountries = ["FR", "BE", "CA", "CH", "LU", "MC", "DZ", "MA", "TN"];
   const [isLoaded, setisLoaded] = useState(false);
   const history = useNavigate();
   const location = useLocation();
@@ -48,12 +49,31 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem("lang") === null) {
-      localStorage.setItem("lang", "en");
-      setLang(localStorage.getItem("lang"));
+    async function fetchData() {
+      try {
+        if (localStorage.getItem("lang") === null) {
+          const countryCode = await getLocationFromIP(
+            await getPublicIPAddress()
+          );
+
+          console.log(countryCode); // Now this should print the correct value
+
+          if (frCountries.includes(countryCode)) {
+            localStorage.setItem("lang", "fr");
+          } else {
+            localStorage.setItem("lang", "en");
+          }
+        }
+
+        setLang(localStorage.getItem("lang"));
+        i18n.changeLanguage(localStorage.getItem("lang"));
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
-    i18n.changeLanguage(localStorage.getItem("lang"));
-  }, []);
+
+    fetchData();
+  }, [i18n, setLang]);
 
   useEffect(() => {
     const html = document.querySelector("html");
@@ -78,6 +98,30 @@ export default function Header() {
       clearTimeout(delayTask); // Clear the timeout if the component unmounts
     };
   }, [location.pathname]);
+
+  async function getPublicIPAddress() {
+    try {
+      const response = await fetch("https://api.ipify.org?format=json");
+      const data = await response.json();
+      const ipAddress = data.ip;
+      return ipAddress;
+    } catch (error) {
+      console.error("Error fetching IP address:", error);
+      throw error; // Rethrow the error to be caught by the higher level
+    }
+  }
+
+  async function getLocationFromIP(ipAddress) {
+    try {
+      const response = await fetch(`https://api.country.is/${ipAddress}`);
+      const data = await response.json();
+      const userCountry = data.country; // Example: "US"
+      return userCountry;
+    } catch (error) {
+      console.error("Error fetching location:", error);
+      throw error; // Rethrow the error to be caught by the higher level
+    }
+  }
 
   const toggleMobileNav = () => {
     setOpenMobileNav(!openMobileNav);
