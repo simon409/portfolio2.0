@@ -90,7 +90,7 @@ export default function ProjectCard({
           >
             <div className="my-auto">
               <p
-                className={`capitalize text-bg-dark dark:text-bg-light origin-top ${
+                className={`text-bg-dark dark:text-bg-light origin-top ${
                   isLoaded ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
                 } transition-all duration-150 ease-in-out delay-700 text-start`}
               >
