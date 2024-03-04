@@ -80,19 +80,19 @@ const CaseStudy = () => {
   return (
     <div onClick={HandelNavClose} className='w-screen min-h-screen bg-white dark:bg-black h-fit flex flex-col items-center pt-24'>
       <div className="container flex flex-col gap-5">
-        <div className={`w-full rounded-lg flex flex-col lg:flex-row justify-between gap-10 items-center p-8 lg:p-12 border-black border-2`} style={{ backgroundColor: bgcolor }}>
+        <div className={`w-full rounded-lg flex flex-col-reverse lg:flex-row justify-between gap-10 items-center p-8 lg:p-12 border-black border-2`} style={{ backgroundColor: bgcolor }}>
           
           <div className='flex flex-col justify-center'>
-            <h1 className='text-4xl lg:text-6xl font-bold mb-4' style={{ color: textColor }}>{project.title}</h1>
+            <h1 className='text-4xl lg:text-6xl font-bold text-start mb-4' style={{ color: textColor }}>{project.title}</h1>
             <p className='text-lg lg:text-xl leading-relaxed mb-6' style={{ color: textColor }}>{project.description}</p>
           </div>
-          <div className='flex justify-center items-center'>
+          <div className='flex justify-start items-center'>
             <img src={project.logo} alt="" className='w-fit object-cover rounded-md' />
           </div>
         </div>
-        <div className='flex gap-5'>
-          <div className="bg-blue-100 w-1/2 rounded-lg p-4">
-            <h1 className='text-2xl font-bold'>Available links</h1>
+        <div className='flex flex-col md:flex-row gap-5'>
+          <div className="bg-blue-100 w-full md:w-1/2 rounded-lg p-4">
+            <h1 className='text-2xl font-bold text-start'>Available links</h1>
             <ul className='mt-2'>
               {
                 project.link !== "" && (
@@ -117,8 +117,8 @@ const CaseStudy = () => {
               }
             </ul>
           </div>
-          <div className="bg-orange-100 w-1/2 rounded-lg p-4" >
-            <h1 className='text-2xl font-bold'>Guest login</h1>
+          <div className="bg-orange-100 w-full md:w-1/2 rounded-lg p-4" >
+            <h1 className='text-2xl font-bold text-start'>Guest login</h1>
             
               {
                 usernameOrMail != "" && password != "" ? (
@@ -146,14 +146,14 @@ const CaseStudy = () => {
           {
             project.project_overview !== "" && (
               <div>
-                <h1 className='text-2xl font-bold uppercase text-blue-500 dark:text-blue-300'>Project overview</h1>
+                <h1 className='text-2xl font-bold text-start uppercase text-blue-500 dark:text-blue-300'>Project overview</h1>
                 <p className='mt-2'>{project.project_overview}</p>
               </div>
             )
           }
           {/*tech stack */}
           <div>
-            <h1 className='text-2xl font-bold uppercase text-blue-500 dark:text-blue-300'>Tech stack</h1>
+            <h1 className='text-2xl font-bold text-start uppercase text-blue-500 dark:text-blue-300'>Tech stack</h1>
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
@@ -162,7 +162,7 @@ const CaseStudy = () => {
           {
             project.front_tech !== "" && (
               <div>
-                <h1 className='text-xl font-bold uppercase text-orange-500 dark:text-orange-300 flex items-center gap-2'><FaCode /> Frontend</h1>
+                <h1 className='text-xl font-bold text-start uppercase text-orange-500 dark:text-orange-300 flex items-center gap-2'><FaCode /> Frontend</h1>
                 <ul className="list-disc ml-5">
                   {
                     project.front_tech && project.front_tech.split(",").map((tech, index) => {
@@ -180,7 +180,7 @@ const CaseStudy = () => {
           {
             project.back_tech !== "" && (
               <div>
-                <h1 className='text-xl font-bold uppercase text-orange-500 dark:text-orange-300 flex items-center gap-2'><TbSettingsCode/> Backend</h1>
+                <h1 className='text-xl font-bold text-start uppercase text-orange-500 dark:text-orange-300 flex items-center gap-2'><TbSettingsCode/> Backend</h1>
                 <ul className="list-disc ml-5">
                   {
                     project.back_tech && project.back_tech.split(",").map((tech, index) => {
@@ -198,7 +198,7 @@ const CaseStudy = () => {
           {
             project.db_tech !== "" && (
               <div>
-                <h1 className='text-xl font-bold uppercase text-orange-500 dark:text-orange-300 flex items-center gap-2'><FaDatabase /> Database</h1>
+                <h1 className='text-xl font-bold text-start uppercase text-orange-500 dark:text-orange-300 flex items-center gap-2'><FaDatabase /> Database</h1>
                 <ul className="list-disc ml-5">
                   {
                     project.db_tech && project.db_tech.split(",").map((tech, index) => {
@@ -215,7 +215,7 @@ const CaseStudy = () => {
           {
             project.api !== "" && (
               <div>
-                <h1 className='text-xl font-bold uppercase text-orange-500 dark:text-orange-300 flex items-center gap-2'><TbApi/> API</h1>
+                <h1 className='text-xl font-bold text-start uppercase text-orange-500 dark:text-orange-300 flex items-center gap-2'><TbApi/> API</h1>
                 <ul className="list-disc ml-5">
                   {
                     project.api && project.api.split(",").map((tech, index) => {
@@ -232,7 +232,7 @@ const CaseStudy = () => {
 
           {/*images */}
           <div className='mt-5 '>
-            <h1 className='text-2xl font-bold uppercase text-blue-500 dark:text-blue-300'>project Images</h1>
+            <h1 className='text-2xl font-bold text-start uppercase text-blue-500 dark:text-blue-300'>project Images</h1>
           </div>
           <div>
                 <ul className="list-disc ml-5">
