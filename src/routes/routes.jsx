@@ -9,6 +9,7 @@ import Dashboard from "../components/admin/dashboard";
 import PrivateRoutes from "./components/PrivateRoutes";
 import Blog from "../components/blog/Blog";
 import Blogs from "../components/blog/Blogs";
+import CaseStudy from "../components/Body/work/CaseStudy";
 
 const Layout = () => (
   <>
@@ -36,6 +37,10 @@ export const routers = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/project/:id",
+        element: <CaseStudy />
       },
       {
         path: "/blog",

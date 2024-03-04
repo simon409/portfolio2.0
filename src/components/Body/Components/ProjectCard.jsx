@@ -1,16 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { FiArrowUpRight, FiGlobe, FiGithub } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
 
 export default function ProjectCard({
   title,
   smdesc,
-  link,
-  github,
-  techs,
   isLoaded,
+  id,
+  bgcolor,
+  logo
 }) {
-  const techsArray = techs.split(",");
   const [Hovered, setHovered] = useState(false);
   return (
     <li
@@ -20,14 +19,26 @@ export default function ProjectCard({
         isLoaded ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
       } transition-all duration-500 ease-in-out group lg:hover:!opacity-100 lg:group-hover/list:opacity-50`}
     >
-      <button className="w-full h-full cursor-default">
+      <a href={`project/${id}`} onMouseOver={()=>setHovered(true)} onMouseLeave={()=>setHovered(false)} className="cursor-pointer">
         <div className="flex flex-col">
-          <div className="flex lg:justify-between lg:flex-row flex-col lg:mb-0 mb-5">
+          <div id="image" className="w-full h-[300px]">
+            {
+              logo ?(
+                <div className={`w-full h-[300px] relative rounded-lg border-black border-2 z-10 flex`} style={{ backgroundColor: bgcolor }}>
+                  <img src={logo} className="object-cover h-30 m-auto" alt="" />
+                </div>
+              ) : (
+                <div className="w-full h-[300px] relative bg-[#000] rounded-lg border-black border-2">
+                  <img src="https://via.placeholder.com/300" className="object-cover" alt="" />
+                </div>
+              )
+            }
+          </div>
+          <div className="flex lg:justify-between lg:flex-row flex-col lg:mb-0 mb-2">
+            
             <div id="title" className="py-2 flex gap-5">
               <h1
-                className={`${
-                  title.length > 11 ? "lg:text-4xl text-xl" : "text-4xl"
-                } text-bg-dark dark:text-bg-light font-bold origin-bottom ${
+                className={`text-3xl text-bg-dark dark:text-bg-light font-bold overflow-hidden h-10 ${
                   isLoaded ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
                 } transition-all duration-150 ease-in-out delay-700`}
               >
@@ -45,75 +56,26 @@ export default function ProjectCard({
                 </p>
               </div>
             </div>
-            <div className="my-auto flex gap-5">
-              {link && (
-                <a
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onFocus={() => setHovered(true)}
-                  onMouseOver={() => setHovered(true)}
-                  onMouseLeave={() => setHovered(false)}
-                  className={`dark:text-black flex px-2 py-1 rounded-md dark:bg-white bg-slate-800 hover:bg-slate-700 text-white lg:text-xl text-sm origin-top transition-all duration-200 ease-in-out`}
-                >
-                  <span className="my-auto">
-                    {" "}
-                    <FiGlobe />
-                  </span>
-                  &nbsp;
-                  <span className="my-auto">{title}</span>
-                </a>
-              )}
-              {github && (
-                <a
-                  href={github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onFocus={() => setHovered(true)}
-                  onMouseOver={() => setHovered(true)}
-                  onMouseLeave={() => setHovered(false)}
-                  className={`dark:text-black flex px-2 py-1 rounded-md dark:bg-white bg-slate-800 hover:bg-slate-700 text-white lg:text-xl text-sm origin-top transition-all duration-200 ease-in-out`}
-                >
-                  <span className="my-auto">
-                    <FiGithub />
-                  </span>{" "}
-                  <span className="my-auto">Github</span>
-                </a>
-              )}
-            </div>
           </div>
           <div
             id="description_tags"
-            className={`border-t-4 border-black dark:border-white py-5 flex flex-col md:flex-col lg:flex-row gap-3 justify-between origin-left ${
+            className={`border-t-4 border-black dark:border-white py-4 flex flex-col md:flex-col lg:flex-row gap-3 justify-between origin-left ${
               isLoaded ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
             } transition-all duration-300 ease-in-out delay-500`}
           >
             <div className="my-auto">
               <p
-                className={`text-bg-dark dark:text-bg-light origin-top ${
+                className={`text-black dark:text-bg-light origin-top ${
                   isLoaded ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
                 } transition-all duration-150 ease-in-out delay-700 text-start`}
               >
-                {smdesc}
+                {smdesc.length > 50 ? smdesc.substring(0, 50) + "..." : smdesc}
               </p>
             </div>
-            <div
-              className={`grid grid-cols-2 md:grid-cols-4 lg:flex gap-3 origin-bottom  ${
-                isLoaded ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
-              } transition-all duration-300 ease-in-out delay-700`}
-            >
-              {techsArray.map((tech, index) => (
-                <p
-                  key={index}
-                  className="lg:px-4 lg:py-1 px-2 py-[2px] border-bg-dark text-bg-dark dark:border-bg-light dark:text-bg-light border-[1px] lg:border-[2px] rounded-full text-sm text-center"
-                >
-                  {tech}
-                </p>
-              ))}
-            </div>
+            
           </div>
         </div>
-      </button>
+      </a>
     </li>
   );
 }

@@ -19,14 +19,16 @@ export default function Work() {
     setfilteredProjects(
       Data
         ? Type === 0
-          ? Data.sort((a, b) => b.id - a.id)
+          ? Data.sort((a, b) => b.order - a.order)
           : Data.filter(
               (project) =>
                 project.type ===
                 (Type == 1 ? "web" : Type == 2 ? "mobile" : "ui/ux")
-            ).sort((a, b) => b.id - a.id)
+            ).sort((a, b) => b.order - a.order)
         : []
     );
+    console.log(filteredProjects);
+
     if (globalVariable) {
       setisLoaded(false);
     } else {
@@ -52,7 +54,7 @@ export default function Work() {
         Data
           ? Type === 0
             ? Data.filter((project) => project.status !== t("on_going")).sort(
-                (a, b) => b.id - a.id
+                (a, b) => b.order - a.order
               )
             : Data.filter((project) => {
                 if (Type === 4) {
@@ -64,10 +66,11 @@ export default function Work() {
                     project.status != t("on_going")
                   );
                 }
-              }).sort((a, b) => b.id - a.id)
+              }).sort((a, b) => b.order - a.order)
           : []
       );
       setisLoaded(true);
+      console.log(filteredProjects);
     }, 800);
 
     return () => {
@@ -274,16 +277,16 @@ export default function Work() {
 
         {filteredProjects && filteredProjects.length > 0 ? (
           <div className="p-4">
-            <ol className="group/list">
+            <ol className="group/list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
               {filteredProjects.map((data) => (
                 <ProjectCard
-                  link={data.link}
-                  github={data.github}
                   title={data.title}
                   smdesc={data.description}
-                  techs={data.techs}
                   key={data.id}
+                  id={data.id}
                   isLoaded={isLoaded}
+                  bgcolor={data.color}
+                  logo={data.logo}
                 />
               ))}
             </ol>
