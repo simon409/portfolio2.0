@@ -95,7 +95,7 @@ const CaseStudy = () => {
           isLoaded ? "scale-y-100" : "scale-y-0"
         } transition-all duration-200 ease-in-out delay-500`}>
           {project.project_overview !== '' && (
-            <div className='w-1/2 h-[350px] overflow-y-scroll '>
+            <div className='w-full lg:w-1/2 h-[350px] overflow-y-scroll '>
               <h1 className="text-2xl font-bold text-start uppercase text-blue-500 dark:text-blue-300">{t('projectOverview')}</h1>
               <p className="mt-2 text-black dark:text-white pr-5">{project.project_overview}</p>
             </div>
