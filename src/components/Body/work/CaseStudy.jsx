@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useOutroContext } from '../../../Provider/OutroProvider';
-import { FaCopy, FaGithub, FaGlobe, FaCode, FaDatabase } from 'react-icons/fa';
+import { FaCopy, FaGithub, FaGlobe, FaCode, FaDatabase, FaCheck } from 'react-icons/fa';
 import { TbApi, TbSettingsCode } from 'react-icons/tb';
 import { useTranslation } from "react-i18next";
 
@@ -16,6 +16,9 @@ const CaseStudy = () => {
   const [textColor, settextColor] = useState('#000');
   const [usernameOrMail, setusernameOrMail] = useState('');
   const [password, setpassword] = useState('');
+  const [iconAnimated, seticonAnimated] = useState(null);
+  const [IsAnimating, setIsAnimating] = useState(false);
+  const [IsAnimating2, setIsAnimating2] = useState(false);
 
   useEffect(() => {
     setproject([]);
@@ -61,12 +64,44 @@ const CaseStudy = () => {
     setOpenMobileNav(false);
   };
 
+  const HandelCopyAnimation = (index) => {
+    if(index === 0) {
+    setIsAnimating(true);
+    setTimeout(() => {
+      seticonAnimated(index);
+      setIsAnimating(false);
+    }, 100);
+
+    setTimeout(() => {
+      setIsAnimating(true);
+      setTimeout(() => {
+        seticonAnimated(null);
+        setIsAnimating(false);
+      }, 100);
+    }, 1000);
+  } else {
+    setIsAnimating2(true);
+    setTimeout(() => {
+      seticonAnimated(index);
+      setIsAnimating2(false);
+    }, 100);
+
+    setTimeout(() => {
+      setIsAnimating2(true);
+      setTimeout(() => {
+        seticonAnimated(null);
+        setIsAnimating2(false);
+      }, 100);
+    }, 1000);}
+  }
+
   const HandelCopy = (index) => {
     if (index === 0) {
       navigator.clipboard.writeText(usernameOrMail);
     } else {
       navigator.clipboard.writeText(password);
     }
+    HandelCopyAnimation(index);
   };
 
   return (
@@ -132,16 +167,28 @@ const CaseStudy = () => {
                   <li className="p-2">
                     <p>
                       {t('username')}: {usernameOrMail}{' '}
-                      <button onClick={() => HandelCopy(0)} className="ml-2 text-blue-500 dark:text-blue-300">
-                        <FaCopy />
+                      <button onClick={() => HandelCopy(0)} disabled={IsAnimating} className={
+                          `ml-2 text-blue-500 dark:text-blue-300 origin-center transform transition-transform ease-in-out duration-200 ${
+                            IsAnimating ? 'scale-50' : `scale-100`
+                          }`
+                      }>
+                        {
+                          iconAnimated === 0 ? <FaCheck /> : <FaCopy />
+                        }
                       </button>
                     </p>
                   </li>
                   <li className="p-2">
                     <p>
                       {t('password')}: {password.length > 0 ? '*'.repeat(password.length) : ''}{' '}
-                      <button onClick={() => HandelCopy(1)} className="ml-2 text-blue-500 dark:text-blue-300">
-                        <FaCopy />
+                      <button onClick={() => HandelCopy(1)} disabled={IsAnimating2} className={
+                          `ml-2 text-blue-500 dark:text-blue-300 origin-center transform transition-transform ease-in-out duration-200 ${
+                            IsAnimating2 ? 'scale-50' : `scale-100`
+                          }`
+                      }>
+                        {
+                          iconAnimated === 1 ? <FaCheck /> : <FaCopy />
+                        }
                       </button>
                     </p>
                   </li>
