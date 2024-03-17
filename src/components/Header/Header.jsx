@@ -306,7 +306,7 @@ export default function Header() {
           openMobileNav
             ? "scale-y-100 translate-y-0 opacity-100 rounded-bl-md rounded-br-md"
             : "scale-y-0 -translate-y-1/2 opacity-0"
-        } bg-white dark:bg-bg-dark block lg:hidden border-2 border-black rounded-md mb-1 z-50 transition-all duration-200 ease-in-out`}
+        } bg-white dark:bg-bg-dark block lg:hidden border-2 border-black dark:border-white rounded-md mb-1 z-50 transition-all duration-200 ease-in-out`}
       >
         <div className="p-4 text-black dark:text-white flex flex-col">
           <button

@@ -12,6 +12,13 @@ export default function Work() {
   const [filteredProjects, setfilteredProjects] = useState(null);
   const [typeMenu, settypeMenu] = useState(false);
   const [t] = useTranslation();
+  const collapseMenu = [
+    "all",
+    "web",
+    "mobile",
+    "ui/ux",
+    "on_going",
+  ]
 
   useEffect(() => {
     // Store the interval ID in state
@@ -198,78 +205,27 @@ export default function Work() {
             </button>
           </div>
           <Collapse in={typeMenu} timeout={300}>
-            <div className="p-4 bg-slate-100 border-[1px] rounded-md lg:hidden">
+            <div className="p-4 bg-slate-100 dark:bg-[#242526] border-[1px] rounded-md lg:hidden">
               <ul className="flex flex-col text-[15px] gap-2 lg:text-lg">
-                <li
-                  className={`rounded-md ${
-                    Type == 0
-                      ? "border-black bg-slate-50"
-                      : "border-transparent"
-                  } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
-                >
-                  <button
-                    className="w-full h-full text-start"
-                    onClick={() => HandelTypeChange(0)}
-                  >
-                    {t("all")}
-                  </button>
-                </li>
-                <li
-                  className={`rounded-md ${
-                    Type == 1
-                      ? "border-black bg-slate-50"
-                      : "border-transparent"
-                  } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
-                >
-                  <button
-                    className="w-full h-full text-start"
-                    onClick={() => HandelTypeChange(1)}
-                  >
-                    Web
-                  </button>
-                </li>
-                <li
-                  className={`rounded-md ${
-                    Type == 2
-                      ? "border-black bg-slate-50"
-                      : "border-transparent"
-                  } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
-                >
-                  <button
-                    className="w-full h-full text-start"
-                    onClick={() => HandelTypeChange(2)}
-                  >
-                    Mobile
-                  </button>
-                </li>
-                <li
-                  className={`rounded-md ${
-                    Type == 3
-                      ? "border-black bg-slate-50"
-                      : "border-transparent"
-                  } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
-                >
-                  <button
-                    className="w-full h-full text-start"
-                    onClick={() => HandelTypeChange(3)}
-                  >
-                    UI/UX
-                  </button>
-                </li>
-                <li
-                  className={`rounded-md ${
-                    Type == 4
-                      ? "border-black bg-slate-50"
-                      : "border-transparent"
-                  } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
-                >
-                  <button
-                    className="w-full h-full text-start"
-                    onClick={() => HandelTypeChange(4)}
-                  >
-                    {t("on_going")}
-                  </button>
-                </li>
+                {
+                  collapseMenu.map((item, index) => (
+                    <li
+                      key={index}
+                      className={`rounded-md ${
+                        Type == index
+                          ? "border-black bg-slate-50 dark:bg-[#353739] dark:border-white"
+                          : "border-transparent"
+                      } border-[1px] hover:border-black dark:hover:border-white text-black dark:text-white px-4 py-1 transition-all duration-100 ease-in-out`}
+                    >
+                      <button
+                        className="w-full h-full text-start"
+                        onClick={() => HandelTypeChange(index)}
+                      >
+                        {t(item)}
+                      </button>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
           </Collapse>

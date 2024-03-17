@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
+import LOGO from "../../../assets/logo_ma_nobg.png";
 
 export default function ProjectCard({
   title,
@@ -24,18 +25,18 @@ export default function ProjectCard({
           <div id="image" className="w-full h-[300px]">
             {
               logo ?(
-                <div className={`w-full h-[300px] relative rounded-lg border-black border-2 z-10 flex`} style={{ backgroundColor: bgcolor }}>
+                <div className={`w-full h-[300px] relative rounded-lg border-black dark:border-white border-2 z-10 flex`} style={{ backgroundColor: bgcolor }}>
                   <img src={logo} className="object-cover h-30 m-auto" alt="" />
                 </div>
               ) : (
                 <div className="w-full h-[300px] relative bg-[#000] rounded-lg border-black border-2">
-                  <img src="https://via.placeholder.com/300" className="object-cover" alt="" />
+                  <img src={LOGO} className="object-cover" alt="" />
                 </div>
               )
             }
           </div>
           <div className="flex lg:justify-between lg:flex-row flex-col lg:mb-0 mb-2">
-            
+
             <div id="title" className="py-2 flex gap-5">
               <h1
                 className={`text-3xl text-bg-dark dark:text-bg-light font-bold overflow-hidden h-10 ${
@@ -72,7 +73,7 @@ export default function ProjectCard({
                 {smdesc.length > 50 ? smdesc.substring(0, 50) + "..." : smdesc}
               </p>
             </div>
-            
+
           </div>
         </div>
       </a>

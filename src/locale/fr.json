@@ -16,5 +16,18 @@
 
   "header_about": "À propos",
   "work": "Projets",
-  "header_contact": "Contact"
+  "header_contact": "Contact",
+
+  "projectOverview": "Aperçu du projet",
+  "availableLinks": "Liens disponibles",
+  "noLinkAvailable": "Aucun lien disponible",
+  "guestLogin": "Connexion invité",
+  "username": "Nom d'utilisateur",
+  "password": "Mot de passe",
+  "noGuestLoginAvailable": "Aucune connexion invité disponible",
+  "frontend": "Frontend",
+  "backend": "Backend",
+  "database": "Base de données",
+  "projectImages": "Images du projet",
+  "noImagesAvailable": "Il n'y a pas d'images pour le moment. Je les mettrai à jour prochainement."
 }

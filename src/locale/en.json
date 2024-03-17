@@ -16,5 +16,18 @@
 
   "header_about": "About",
   "work": "Work",
-  "header_contact": "Contact"
+  "header_contact": "Contact",
+
+  "projectOverview": "Project Overview",
+  "availableLinks": "Available Links",
+  "noLinkAvailable": "No link available",
+  "guestLogin": "Guest Login",
+  "username": "Username",
+  "password": "Password",
+  "noGuestLoginAvailable": "No guest login available",
+  "frontend": "Frontend",
+  "backend": "Backend",
+  "database": "Database",
+  "projectImages": "Project Images",
+  "noImagesAvailable": "There are no images right now. I will update them shortly."
 }
