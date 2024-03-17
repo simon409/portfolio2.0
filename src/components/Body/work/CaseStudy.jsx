@@ -161,7 +161,7 @@ const CaseStudy = () => {
           isLoaded ? "scale-y-100" : "scale-y-0"
         } transition-all duration-200 ease-in-out delay-700`}>
           <div>
-            <h1 className="text-2xl font-bold text-start uppercase text-blue-500 dark:text-blue-300">Tech stack</h1>
+            <h1 className="text-2xl font-bold text-start uppercase text-blue-500 dark:text-blue-300">{t('teckstack')}</h1>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
             {project.front_tech !== '' && (

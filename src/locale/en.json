@@ -25,6 +25,7 @@
   "username": "Username",
   "password": "Password",
   "noGuestLoginAvailable": "No guest login available",
+  "teckstack": "Tech Stack",
   "frontend": "Frontend",
   "backend": "Backend",
   "database": "Database",

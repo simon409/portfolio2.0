@@ -25,6 +25,7 @@
   "username": "Nom d'utilisateur",
   "password": "Mot de passe",
   "noGuestLoginAvailable": "Aucune connexion invité disponible",
+  "teckstack": "Pile technologique",
   "frontend": "Frontend",
   "backend": "Backend",
   "database": "Base de données",
