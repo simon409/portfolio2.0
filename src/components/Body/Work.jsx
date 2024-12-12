@@ -60,17 +60,17 @@ export default function Work() {
       setfilteredProjects(
         Data
           ? Type === 0
-            ? Data.filter((project) => project.status !== t("on_going")).sort(
+            ? Data.filter((project) => project.status == "Done").sort(
                 (a, b) => b.order - a.order
               )
             : Data.filter((project) => {
                 if (Type === 4) {
-                  return project.status === t("on_going");
+                  return project.status === "On going";
                 } else {
                   return (
                     project.type ===
                       (Type === 1 ? "web" : Type === 2 ? "mobile" : "ui/ux") &&
-                    project.status != t("on_going")
+                    project.status == "Done"
                   );
                 }
               }).sort((a, b) => b.order - a.order)
